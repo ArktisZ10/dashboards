@@ -43,18 +43,12 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Checkout gh-pages static files
-        uses: actions/checkout@v4
-        with:
-          ref: gh-pages
-          path: _gh-pages
-
       - name: Assemble site
         run: |
           mkdir -p _site
-          # Copy static docs (index.html, docs/) from gh-pages branch
-          cp _gh-pages/index.html _site/
-          cp -r _gh-pages/docs _site/docs
+          # Copy static docs (index.html, docs/) from site/ in main
+          cp site/index.html _site/
+          cp -r site/docs _site/docs
           # Copy demo build output
           cp -r packages/shell/dist _site/demo
 

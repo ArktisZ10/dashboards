@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboards – Docs</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 4rem 1.5rem;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.5px;
+    }
+    p.subtitle {
+      color: #8b949e;
+      margin-bottom: 3rem;
+      font-size: 1rem;
+    }
+    ul {
+      list-style: none;
+      width: 100%;
+      max-width: 560px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    li a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      color: #58a6ff;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    li a:hover {
+      background: #1c2128;
+      border-color: #58a6ff;
+    }
+    li a .icon { font-size: 1.2rem; }
+    li a .label { font-weight: 600; }
+    li a .desc { margin-left: auto; color: #8b949e; font-size: 0.85rem; }
+    footer {
+      margin-top: 4rem;
+      color: #484f58;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>📊 Dashboards</h1>
+  <p class="subtitle">Project documentation &amp; design references</p>
+
+  <ul>
+    <li>
+      <a href="demo/">
+        <span class="icon">🚀</span>
+        <span class="label">Live Demo</span>
+        <span class="desc">Interactive dashboard app</span>
+      </a>
+    </li>
+    <li>
+      <a href="docs/dashboard-design-decision.html">
+        <span class="icon">📄</span>
+        <span class="label">Dashboard Design Decisions</span>
+        <span class="desc">Architecture &amp; UX rationale</span>
+      </a>
+    </li>
+  </ul>
+
+  <footer>ArktisZ10/dashboards · GitHub Pages</footer>
+</body>
+</html>
