@@ -1,0 +1,10 @@
+{
+  "name": "dashboards",
+  "private": true,
+  "engines": { "node": ">=18", "pnpm": ">=8" },
+  "scripts": {
+    "dev": "pnpm --filter @dashboard/shell dev",
+    "build": "pnpm --filter @dashboard/sdk build && pnpm --filter @dashboard/shell build",
+    "typecheck": "pnpm -r run typecheck"
+  }
+}
