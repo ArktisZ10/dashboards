@@ -3,7 +3,7 @@ import { Box, Typography, CircularProgress, Alert, Table, TableBody, TableRow, T
 import type { WidgetProps } from '@dashboard/sdk'
 import { forecastConfigSchema } from './schema'
 import { fetchSmhiForecast, type ForecastEntry } from './smhiApi'
-import { weatherSymbolEmojis, weatherSymbolNames } from './weatherSymbols'
+import { weatherSymbolNames, getWeatherEmoji } from './weatherSymbols'
 
 const REFRESH_INTERVAL_MS = 5 * 60 * 1000
 
@@ -48,35 +48,35 @@ export function ForecastWidget({ config }: WidgetProps) {
     return <Alert severity="error" sx={{ m: 1 }}>{error}</Alert>
   }
 
-  const now = entries[0]
-  const upcoming = entries.slice(1, 7)
+  const weatherNow = entries[0]
+  const weatherUpcoming = entries.slice(1, 7)
 
   return (
     <Box sx={{ height: '100%', overflow: 'auto', p: 1 }}>
-      {now && (
+      {weatherNow && (
         <Box sx={{ textAlign: 'center', mb: 2 }}>
           <Typography variant="caption" color="text.secondary">{locationName}</Typography>
-          <Box sx={{ fontSize: 48 }}>{weatherSymbolEmojis[now.wsymb2]}</Box>
+          <Box sx={{ fontSize: 48 }}>{getWeatherEmoji(weatherNow.wsymb2, weatherNow.time, latitude, longitude)}</Box>
           <Typography variant="h4" component="div" sx={{ fontWeight: 300 }}>
-            {Math.round(now.temp)}°C
+            {Math.round(weatherNow.temp)}°C
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {weatherSymbolNames[now.wsymb2]}
+            {weatherSymbolNames[weatherNow.wsymb2]}
           </Typography>
           <Typography variant="caption" color="text.secondary">
-            Wind {now.windSpeed.toFixed(1)} m/s
+            Wind {weatherNow.windSpeed.toFixed(1)} m/s
           </Typography>
         </Box>
       )}
 
       <Table size="small">
         <TableBody>
-          {upcoming.map((entry) => (
+          {weatherUpcoming.map((entry) => (
             <TableRow key={entry.time.toISOString()}>
               <TableCell sx={{ py: 0.5, pl: 0 }}>
                 {entry.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
               </TableCell>
-              <TableCell sx={{ py: 0.5 }}>{weatherSymbolEmojis[entry.wsymb2]}</TableCell>
+              <TableCell sx={{ py: 0.5 }}>{getWeatherEmoji(entry.wsymb2, entry.time, latitude, longitude)}</TableCell>
               <TableCell sx={{ py: 0.5 }}>{Math.round(entry.temp)}°C</TableCell>
               <TableCell sx={{ py: 0.5, pr: 0, color: 'text.secondary' }}>
                 {weatherSymbolNames[entry.wsymb2]}

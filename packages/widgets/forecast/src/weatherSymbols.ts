@@ -1,3 +1,5 @@
+import SunCalc from 'suncalc'
+
 export const weatherSymbolNames: Record<number, string> = {
   1: 'Clear sky',
   2: 'Nearly clear sky',
@@ -56,4 +58,15 @@ export const weatherSymbolEmojis: Record<number, string> = {
   25: '❄️',
   26: '❄️',
   27: '❄️',
+}
+
+export function getWeatherEmoji(symbol: number, time: Date, lat: number, lon: number): string {
+  if (symbol === 1) {
+    const { sunset, sunrise } = SunCalc.getTimes(time, lat, lon)
+    // Check if the sunrise and sunset are valid.
+    // Examples of invalid dates include polar night or midnight sun scenarios.
+    const validDates = !isNaN(sunrise.getTime()) && !isNaN(sunset.getTime())
+    if (validDates && (time >= sunset || time < sunrise)) return '🌙'
+  }
+  return weatherSymbolEmojis[symbol] ?? '❓'
 }
