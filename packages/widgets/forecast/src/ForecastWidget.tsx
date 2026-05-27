@@ -55,15 +55,15 @@ export function ForecastWidget({ config }: WidgetProps) {
     <Box sx={{ height: '100%', overflow: 'auto', p: 1 }}>
       {weatherNow && (
         <Box sx={{ textAlign: 'center', mb: 2 }}>
-          <Typography variant="caption" color="text.secondary">{locationName}</Typography>
+          <Typography variant="caption" sx={{ color: 'text.secondary' }}>{locationName}</Typography>
           <Box sx={{ fontSize: 48 }}>{getWeatherEmoji(weatherNow.wsymb2, weatherNow.time, latitude, longitude)}</Box>
           <Typography variant="h4" component="div" sx={{ fontWeight: 300 }}>
             {Math.round(weatherNow.temp)}°C
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
             {weatherSymbolNames[weatherNow.wsymb2]}
           </Typography>
-          <Typography variant="caption" color="text.secondary">
+          <Typography variant="caption" sx={{ color: 'text.secondary' }}>
             Wind {weatherNow.windSpeed.toFixed(1)} m/s
           </Typography>
         </Box>

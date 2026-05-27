@@ -22,6 +22,7 @@ export interface WidgetProps {
 export interface ConfigPanelProps {
   config: Record<string, unknown>
   onChange: (config: Record<string, unknown>) => void
+  validationErrors: Record<string, string[]>
 }
 
 export interface WidgetModule {

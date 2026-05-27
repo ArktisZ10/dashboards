@@ -88,7 +88,7 @@ export function QuoteWidget({ config }: WidgetProps) {
       <Typography variant="body1" sx={{ fontStyle: 'italic', lineHeight: 1.6 }}>
         {quote.quote}
       </Typography>
-      <Typography variant="caption" color="text.secondary" sx={{ alignSelf: 'flex-end' }}>
+      <Typography variant="caption" sx={{ alignSelf: 'flex-end', color: 'text.secondary' }}>
         — {quote.author}
       </Typography>
     </Box>
