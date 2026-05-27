@@ -1,0 +1,25 @@
+{
+  "name": "@dashboard/widget-dev-sandbox",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "peerDependencies": {
+    "@dashboard/sdk": "workspace:*",
+    "react": ">=18",
+    "zod": ">=3"
+  },
+  "devDependencies": {
+    "@dashboard/sdk": "workspace:*",
+    "@mui/material": "^9.0.1",
+    "@types/react": "^18.3.3",
+    "react": "^18.3.1",
+    "zod": "^3.23.0"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^9.0.1"
+  }
+}

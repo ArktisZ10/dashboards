@@ -9,6 +9,12 @@ const registry = new Map<string, WidgetModule>([
   [quoteModule.meta.id, quoteModule],
 ])
 
+if (import.meta.env.DEV) {
+  const { default: devSandboxModule } = await import('@dashboard/widget-dev-sandbox')
+  registry.set(devSandboxModule.meta.id, devSandboxModule)
+}
+
+
 export function getWidget(widgetType: string): WidgetModule | undefined {
   return registry.get(widgetType)
 }
