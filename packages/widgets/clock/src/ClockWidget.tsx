@@ -36,7 +36,7 @@ export function ClockWidget({ config }: WidgetProps) {
       <Typography variant="h2" component="div" sx={{ fontWeight: 300, letterSpacing: '-1px' }}>
         {timeStr}
       </Typography>
-      <Typography variant="body1" color="text.secondary">
+      <Typography variant="body1" sx={{ color: 'text.secondary' }}>
         {dateStr}
       </Typography>
     </Box>
