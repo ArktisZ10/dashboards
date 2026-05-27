@@ -1,13 +1,21 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useAtomValue } from 'jotai'
-import { ThemeProvider, CssBaseline, Box } from '@mui/material'
-import { buildMuiTheme, applyThemeCssVars } from './theme'
+import { CssVarsProvider, useColorScheme } from '@mui/material/styles'
+import { CssBaseline, Box } from '@mui/material'
+import { muiTheme } from './theme'
 import { dashboardAtom, themeAtom } from './store'
 import { useDashboardPersistence } from './hooks/useDashboardPersistence'
 import { DashboardAppBar } from './components/AppBar'
 import { DashboardGrid } from './components/DashboardGrid'
 import { AddWidgetFab, AddWidgetDrawer } from './components/AddWidgetDrawer'
 import { EmptyState } from './components/EmptyState'
+
+function ThemeModeSync() {
+  const themeMode = useAtomValue(themeAtom)
+  const { setMode } = useColorScheme()
+  useEffect(() => { setMode(themeMode) }, [themeMode, setMode])
+  return null
+}
 
 function DashboardContent() {
   const dashboard = useAtomValue(dashboardAtom)
@@ -44,20 +52,14 @@ function DashboardContent() {
 }
 
 export default function App() {
-  const themeMode = useAtomValue(themeAtom)
-  const muiTheme = useMemo(() => buildMuiTheme(themeMode), [themeMode])
-
-  useEffect(() => {
-    applyThemeCssVars(muiTheme)
-  }, [muiTheme])
-
   return (
-    <ThemeProvider theme={muiTheme}>
+    <CssVarsProvider theme={muiTheme} defaultMode="dark">
+      <ThemeModeSync />
       <CssBaseline />
       <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
         <DashboardAppBar />
         <DashboardContent />
       </Box>
-    </ThemeProvider>
+    </CssVarsProvider>
   )
 }
